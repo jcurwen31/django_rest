@@ -7,7 +7,7 @@ from snippets.serializers import SnippetSerializer
 
 # Create your views here.
 @api_view(['GET', 'POST'])
-def snippet_list(request):
+def snippet_list(request, format=None):
     """
     list all snippets or create one
     :param request:
@@ -26,7 +26,7 @@ def snippet_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def snippet_detail(request, pk):
+def snippet_detail(request, pk, format=None):
     """
     retrieve update or delete snippet
     :param request:
