@@ -56,11 +56,12 @@ from snippets.serializers import SnippetSerializer
 #         snippet.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
+# classes with mixins
+"""
 class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-    """
-    List all snippets, or create a new snippet.
-    """
+    
+    # List all snippets, or create a new snippet.
+    
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
@@ -86,5 +87,17 @@ class SnippetDetail(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+"""
+
+class SnippetList(generics.ListCreateAPIView):
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetSerializer
+
+
+class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetSerializer
+
+
 
 
